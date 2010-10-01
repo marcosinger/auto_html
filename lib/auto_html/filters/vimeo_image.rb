@@ -6,8 +6,9 @@ AutoHtml.add_filter(:vimeo_image).with(:size => :medium) do |text, options|
     vimeo_id  = $2
     size      = options[:size].to_s
     vimeo_xml = open("http://vimeo.com/api/v2/video/#{vimeo_id}.xml") { |v| Hpricot.XML(v) }
-
-    (vimeo_xml/"thumbnail_#{size}").inner_html.blank? ? (vimeo_xml/"thumbnail_medium").inner_html : (vimeo_xml/"thumbnail_#{size}").inner_html
+    url       = (vimeo_xml/"thumbnail_#{size}").inner_html.blank? ? (vimeo_xml/"thumbnail_medium").inner_html : (vimeo_xml/"thumbnail_#{size}").inner_html
+    
+    %{<img src="#{url}" alt=""/>}
   end
 end
 
