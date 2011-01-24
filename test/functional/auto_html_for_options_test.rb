@@ -1,11 +1,11 @@
 require File.expand_path('../../test_helper', __FILE__)
 require File.expand_path('../../fixture_setup', __FILE__)
 
-# store default so we can revert so that other tests use default option
-default_suffix = AutoHtmlFor.auto_html_for_options[:htmlized_attribute_suffix]
-AutoHtmlFor.auto_html_for_options[:htmlized_attribute_suffix] = '_htmlized'
-
 class Article < ActiveRecord::Base
+  auto_html_for :body => "_htmlized" do
+    simple_format
+  end
+  
   auto_html_for :body => "_to_html" do
     youtube
     vimeo
@@ -43,7 +43,3 @@ class AutoHtmlForOptionsTest < Test::Unit::TestCase
     assert_equal 'http://b.vimeocdn.com/ts/937/359/93735969_200.jpg', @article.body_to_image
   end
 end
-
-# reverting to default so that other tests use default option
-AutoHtmlFor.auto_html_for_options[:htmlized_attribute_suffix] = default_suffix
-
