@@ -10,7 +10,7 @@ end
 
 desc 'Test with recent versions of Rails'
 task :test_with_recent do
-  versions = ['2.3.6', '3.0.0.rc']
+  versions = ['2.3.8', '3.0.3']
   versions.each do |v|
     puts "\n###### TESTING WITH RAILS #{v}"
     ENV['RAILS_VERSION'] = v
@@ -28,21 +28,3 @@ task :test_with_installed do
     Rake::Task['test'].execute
   end
 end
-
-
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "auto_html"
-    gem.summary = %{Automatically transforms urls (via domain) and includes the destination resource (Vimeo, YouTube movie, image, ...) in your document}
-    gem.email = "desimic@gmail.com"
-    gem.homepage = "http://github.com/dejan/auto_html"
-    gem.description = "Automatically transforms urls (via domain) and includes the destination resource (Vimeo, YouTube movie, image, ...) in your document"
-    gem.authors = ["Dejan Simic"]
-    gem.files.exclude 'test.sqlite3'
-    gem.has_rdoc = false
-  end
-rescue LoadError
-  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
-end
-

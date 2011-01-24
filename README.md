@@ -8,7 +8,7 @@ auto_html is a Rails extension for transforming URLs to appropriate resource (im
 
 Transforming string with text and URLs is done with *auto_html* method:
 
-    inlcude AutoHtml
+    include AutoHtml
     
     auto_html('Hey! Checkout out: http://vukajlija.com') { simple_format; link(:target => 'blank') }
     => "<p>Hey! Checkout out: <a href='http://vukajlija.com' target='blank'>http://vukajlija.com</a></p>"
@@ -71,8 +71,6 @@ As from version 1.2.0 auto_html uses Rails' engine for discovering links. There 
     for Rails <= 2.3.1 use auto_html 1.1.2<br/>
     for Rails >= 2.3.2 use the latest auto_html
 
-As from version 1.3.0, auto_html has been tested to work with Rails 3 and Ruby 1.9.
-
 ### As a gem
 
 To enable the library in your Rails 2.1-2.3 project, use the gem configuration method in "config/environment.rb"
@@ -93,4 +91,4 @@ In Rails 3.0 specify the gem in your Gemfile
 ## Credits
 
 Author: [Dejan Simic](http://github.com/dejan)<br/>
-Contributors: [Claudio Perez Gamayo](http://github.com/crossblaim), [Matt Polito](http://github.com/mattpolito), [Ryan Heneise](http://github.com/mysmallidea), [Caleb Wright](http://github.com/fabrikagency)
+Contributors: [Claudio Perez Gamayo](http://github.com/crossblaim), [Matt Polito](http://github.com/mattpolito), [Ryan Heneise](http://github.com/mysmallidea), [Caleb Wright](http://github.com/fabrikagency), [Derrick Camerino](https://github.com/robustdj)
