@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.email    = ['markaum@gmail.com', 'desimic@gmail.com']
   gem.homepage = 'http://github.com/marcosinger/auto_html'
 
-  # ensure the gem is built out of versioned files
+    # ensure the gem is built out of versioned files
   gem.files = Dir['Rakefile', '{bin,lib,man,test,spec}/**/*',
                   'README*', 'LICENSE'] & `git ls-files -z`.split("\0")
 
