@@ -26,17 +26,18 @@ module AutoHtmlFor
       raw_attrs = { raw_attrs => AutoHtmlFor.auto_html_for_options[:htmlized_attribute_suffix] } unless raw_attrs.is_a?(Hash)
       
       raw_attrs.each do |raw_attr, suffix|
-        define_method("#{raw_attr}#{suffix}=") do |val|
-          write_attribute("#{raw_attr}#{suffix}", val)
+        method_name = "#{raw_attr}#{suffix}"
+        
+        define_method("#{method_name}=") do |val|
+          # att_ - hack for mongoid > 2.1
+          write_attribute("attr_#{method_name}", val)
         end
-        define_method("#{raw_attr}#{suffix}") do
-          # result = read_attribute("#{raw_attr}#{suffix}") || send("auto_html_prepare_#{raw_attr}")
-          #           result.respond_to?(:html_safe) ? result.html_safe : result
-          read_attribute("#{raw_attr}#{suffix}") || send("auto_html_prepare_#{raw_attr}#{suffix}")
+        define_method("#{method_name}") do
+          # att_ - hack for mongoid > 2.1
+          read_attribute("attr_#{method_name}") || send("auto_html_prepare_#{method_name}")
         end
-        define_method("auto_html_prepare_#{raw_attr}#{suffix}") do
-          self.send(raw_attr.to_s + suffix + "=", 
-            auto_html(self.send(raw_attr), &proc))
+        define_method("auto_html_prepare_#{method_name}") do
+          self.send(raw_attr.to_s + suffix + "=", auto_html(self.send(raw_attr), &proc))
         end
       end
     end
