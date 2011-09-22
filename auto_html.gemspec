@@ -14,6 +14,10 @@ Gem::Specification.new do |gem|
                   'README*', 'LICENSE'] & `git ls-files -z`.split("\0")
 
 
+  gem.add_dependency('rinku')
+  gem.add_dependency('tag_helper')
+  gem.add_dependency('RedCloth')
+  gem.add_dependency('redcarpet')
   gem.add_dependency 'hpricot',  '>= 0.8.4'
 end
 

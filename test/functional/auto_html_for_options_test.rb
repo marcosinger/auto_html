@@ -40,6 +40,6 @@ class AutoHtmlForOptionsTest < Test::Unit::TestCase
     @article.save!
 
     assert_equal %'<iframe src=\"http://player.vimeo.com/video/14074949?title=0&byline=0&portrait=0\" width=\"440\" height=\"248\" frameborder=\"0\"></iframe>', @article.body_to_html
-    assert_equal 'http://b.vimeocdn.com/ts/937/359/93735969_200.jpg', @article.body_to_image
+    assert_equal 'http://b.vimeocdn.com/ts/819/560/81956031_200.jpg', @article.body_to_image
   end
 end

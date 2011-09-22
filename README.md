@@ -47,7 +47,7 @@ If you need to display preview, no problem. Have something like this as action i
       render :text => comment.body_html
     end
 
-Plugin is highly customizable, and you can easily create new filters that will transform user input any way you like. For instance, this is the image filter that comes bundled with plugin:
+AutoHtml is highly customizable, and you can easily create new filters that will transform user input any way you like. For instance, this is the image filter that comes bundled with plugin:
 
     AutoHtml.add_filter(:image) do |text|
       text.gsub(/http:\/\/.+\.(jpg|jpeg|bmp|gif|png)(\?\S+)?/i) do |match|
@@ -55,6 +55,22 @@ Plugin is highly customizable, and you can easily create new filters that will t
       end
     end
 
+
+## Non-ActiveRecord models
+
+AutoHtml uses standard ActiveModel API, which means that you can include AutoHtmlFor module (that automates transformation of the field) in any non-ActiveRecord model that uses ActiveModel. Here's working [mongoid](http://mongoid.org/) example:
+
+    class Post
+      include Mongoid::Document
+      include AutoHtmlFor
+
+      field :body
+
+      auto_html_for :body do
+        simple_format
+        link
+      end
+    end
 
 
 ## Bundled filters
@@ -64,31 +80,12 @@ For filter list and options they support check: <http://github.com/dejan/auto_ht
 
 ## Install
 
-### Important note on versions
-
-As from version 1.2.0 auto_html uses Rails' engine for discovering links. There are some bugs with that engine in versions under Rails 2.3.2. so it's recommended you use auto_html 1.1.2 in that case, since internal engine is used in that version.
-
-    for Rails <= 2.3.1 use auto_html 1.1.2<br/>
-    for Rails >= 2.3.2 use the latest auto_html
-
-### As a gem
-
-To enable the library in your Rails 2.1-2.3 project, use the gem configuration method in "config/environment.rb"
-
-    Rails::Initializer.run do |config|
-      config.gem 'auto_html'
-    end
-
-In Rails 3.0 specify the gem in your Gemfile
+Specify the gem in Gemfile of the project
 
     gem "auto_html"
-
-### As a Rails plugin
-
-    script/plugin install git://github.com/dejan/auto_html.git
 
 
 ## Credits
 
 Author: [Dejan Simic](http://github.com/dejan)<br/>
-Contributors: [Claudio Perez Gamayo](http://github.com/crossblaim), [Matt Polito](http://github.com/mattpolito), [Ryan Heneise](http://github.com/mysmallidea), [Caleb Wright](http://github.com/fabrikagency), [Derrick Camerino](https://github.com/robustdj)
+Contributors: [Claudio Perez Gamayo](https://github.com/crossblaim), [Matt Polito](https://github.com/mattpolito), [Ryan Heneise](https://github.com/mysmallidea), [Caleb Wright](https://github.com/fabrikagency), [Derrick Camerino](https://github.com/robustdj), [Daniel Weinmann](https://github.com/danielweinmann), [Edgars Beigarts](https://github.com/ebeigarts), [Henning Thies](https://github.com/henningthies), [rbq](https://github.com/rbq)

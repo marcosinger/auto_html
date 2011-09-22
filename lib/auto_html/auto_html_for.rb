@@ -30,6 +30,8 @@ module AutoHtmlFor
           write_attribute("#{raw_attr}#{suffix}", val)
         end
         define_method("#{raw_attr}#{suffix}") do
+          # result = read_attribute("#{raw_attr}#{suffix}") || send("auto_html_prepare_#{raw_attr}")
+          #           result.respond_to?(:html_safe) ? result.html_safe : result
           read_attribute("#{raw_attr}#{suffix}") || send("auto_html_prepare_#{raw_attr}#{suffix}")
         end
         define_method("auto_html_prepare_#{raw_attr}#{suffix}") do

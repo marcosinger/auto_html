@@ -1,3 +1,28 @@
+## 1.4.2, released 2011-08-12
+* Add support for YouTube short url
+* added Redcarpet filter (Markdown rendering)
+
+## 1.4.1, released 2011-07-09
+* AutoHtml gets module method: AutoHtml.auto_html(...)
+* on blank filter list return input instead of nil
+* AutoHtmlFor producing html_safe
+
+## 1.4.0, released 2011-07-09
+* remove Rails dependencies by using rinku & tag_helper
+* image filter supports attributes
+* output of auto_html method is html_safe
+* auto_html module is included in ApplicationHelper
+
+## 1.3.7, released 2011-04-12
+* require activerecord only if available
+
+## 1.3.6, released 2011-03-30
+* RedCloth name fix in gemspec
+
+## 1.3.5, released 2011-03-30
+* RedCloth filter
+* https support for image filter
+
 ## 1.3.4, released 2011-01-01
 * added metacafe filter
 * converts all filter outputs to_s
